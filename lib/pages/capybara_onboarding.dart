@@ -49,12 +49,12 @@ class _CapybaraOnboardingState extends State<CapybaraOnboarding> {
                 padding: const EdgeInsets.only(top: 40.0),
                 child: Image.asset(
                   images[page - 1],
-                  height: 140.0 * 2,
+                  height: MediaQuery.of(context).size.height * 0.3,
                 ),
               ))
             ],
           ),
-          separator20V,
+          separator40V,
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -98,35 +98,39 @@ class _CapybaraOnboardingState extends State<CapybaraOnboarding> {
                         color: page == 3 ? colors[page - 1] : Colors.grey),
                   ],
                 ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SizedBox(
-                      width: 56.0 * 1.3,
-                      height: 56.0 * 1.3,
-                      child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(colors[page - 1]),
-                          strokeWidth: 2.0,
-                          value: (1.0 / 3) * page,
-                          backgroundColor: Colors.grey),
-                    ),
-                    FilledButton(
-                        onPressed: () {
-                          setState(() {
-                            if (page <= 2) {
-                              page += 1;
-                            } else {
-                              page = 1;
-                            }
-                          });
-                        },
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(colors[page - 1]),
-                            minimumSize: MaterialStateProperty.all(
-                                const Size(56.0, 56.0))),
-                        child: const Icon(Icons.chevron_right))
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      SizedBox(
+                        width: 56.0 * 1.3,
+                        height: 56.0 * 1.3,
+                        child: CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation(colors[page - 1]),
+                            strokeWidth: 2.0,
+                            value: (1.0 / 3) * page,
+                            backgroundColor: Colors.grey),
+                      ),
+                      FilledButton(
+                          onPressed: () {
+                            setState(() {
+                              if (page <= 2) {
+                                page += 1;
+                              } else {
+                                page = 1;
+                              }
+                            });
+                          },
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(colors[page - 1]),
+                              minimumSize: MaterialStateProperty.all(
+                                  const Size(56.0, 56.0))),
+                          child: const Icon(Icons.chevron_right))
+                    ],
+                  ),
                 )
               ],
             ),
